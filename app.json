@@ -36,6 +36,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "5b77d1b5-6d1d-4382-960b-6c355d958ea5"
+      }
+    },
+    "owner": "heojeongbo"
   }
 }
