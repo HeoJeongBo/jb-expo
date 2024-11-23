@@ -1,28 +1,32 @@
 import { renderHook } from '@testing-library/react-native';
 import useEffectOnce from './use-effect-once';
 
-const mockEffectCleanup = jest.fn();
-const mockEffectCallback = jest.fn().mockReturnValue(mockEffectCleanup);
+const createMockEffect = () => {
+  const cleanup = jest.fn();
+  const callback = jest.fn().mockReturnValue(cleanup);
+  return { cleanup, callback };
+};
 
-it('should run effect only once', () => {
-  const { rerender } = renderHook(() => useEffectOnce(mockEffectCallback));
+describe('useEffectOnce', () => {
+  it('should run effect only once', () => {
+    const { callback } = createMockEffect();
+    const { rerender } = renderHook(() => useEffectOnce(callback));
 
-  expect(mockEffectCallback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledTimes(1);
 
-  rerender({});
+    rerender({});
 
-  expect(mockEffectCallback).toHaveBeenCalledTimes(1);
-});
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
 
-const mockEffectCleanup2 = jest.fn();
-const mockEffectCallback2 = jest.fn().mockReturnValue(mockEffectCleanup2);
+  it('should run cleanup when unmounted', () => {
+    const { cleanup, callback } = createMockEffect();
+    const { unmount } = renderHook(() => useEffectOnce(callback));
 
-it('should run cleanup when unmounted', () => {
-  const { unmount } = renderHook(() => useEffectOnce(mockEffectCallback2));
+    expect(cleanup).not.toHaveBeenCalled();
 
-  expect(mockEffectCleanup2).not.toHaveBeenCalled();
+    unmount();
 
-  unmount();
-
-  expect(mockEffectCleanup2).toHaveBeenCalledTimes(1);
+    expect(cleanup).toHaveBeenCalledTimes(1);
+  });
 });
