@@ -42,11 +42,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-private-methods": "^7.25.9",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.8.1",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.12",
     "babel-jest": "^29.7.0",
+    "babel-plugin-syntax-hermes-parser": "^0.25.1",
     "babel-preset-expo": "^12.0.2",
     "eslint": "^8.57.0",
     "eslint-config-expo": "~8.0.1",
@@ -83,6 +85,14 @@
       "node"
     ],
     "transform": {
+      "^.+\\.(js)$": [
+        "babel-jest",
+        {
+          "plugins": [
+            "babel-plugin-syntax-hermes-parser"
+          ]
+        }
+      ],
       "\\.[tj]sx?$": "babel-jest"
     },
     "transformIgnorePatterns": [
