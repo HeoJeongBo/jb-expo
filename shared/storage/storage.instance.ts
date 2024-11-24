@@ -12,7 +12,7 @@ class Storage {
   }
 
   set(key: StorageKey, value: StorageSchema[StorageKey]) {
-    this.store.set(key, value);
+    this.store.set(key, JSON.stringify(value));
   }
 
   get(key: StorageKey): StorageSchema[StorageKey] | undefined {
