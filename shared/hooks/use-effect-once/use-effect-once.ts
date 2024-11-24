@@ -1,8 +1,13 @@
-import { EffectCallback } from 'expo-router';
 import { useEffect } from 'react';
 
-const useEffectOnce = (effect: EffectCallback) => {
-  useEffect(effect, []);
+const useEffectOnce = (effect: () => void | (() => void)) => {
+  useEffect(() => {
+    const cleanup = effect();
+
+    return () => {
+      if (typeof cleanup === 'function') cleanup();
+    };
+  }, []);
 };
 
 export default useEffectOnce;
