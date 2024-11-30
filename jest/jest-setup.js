@@ -17,3 +17,19 @@ jest.mock('react-native-safe-area-context', () => {
     useSafeAreaInsets: jest.fn().mockImplementation(() => inset),
   };
 });
+
+jest.mock('react-native-mmkv', () => {
+  const mockData = {};
+
+  return {
+    MMKV: jest.fn().mockImplementation(() => ({
+      set: jest.fn((key, value) => {
+        mockData[key] = value;
+      }),
+      getString: jest.fn(key => mockData[key] || null),
+      delete: jest.fn(key => {
+        delete mockData[key];
+      }),
+    })),
+  };
+});
