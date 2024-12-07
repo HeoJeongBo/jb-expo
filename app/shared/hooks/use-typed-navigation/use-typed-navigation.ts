@@ -1,4 +1,4 @@
-import { AllNavigatorParams } from '@/shared/types/route.type';
+import { AllScreenParams } from '@/shared/types/route.type';
 import { NavigationProp, useNavigation } from '@react-navigation/core';
 
 /**
@@ -8,7 +8,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/core';
  * expoRouter는 가독성이 좋은 것 같지 않아 추후에 다시 작업 예정
  */
 const useTypedRouter = () => {
-  const navigation = useNavigation<NavigationProp<AllNavigatorParams>>();
+  const navigation = useNavigation<NavigationProp<AllScreenParams>>();
 
   return navigation;
 };
