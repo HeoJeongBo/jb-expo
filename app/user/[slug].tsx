@@ -1,8 +1,12 @@
-import { useNavigation } from 'expo-router';
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const TabTwoScreen = () => {
-  const navigation = useNavigation();
+const UserScreen = () => {
+  const { slug } = useLocalSearchParams();
+
+  const bb = useRouter();
+
+  bb.navigate('..');
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -15,4 +19,4 @@ const TabTwoScreen = () => {
   );
 };
 
-export default TabTwoScreen;
+export default UserScreen;

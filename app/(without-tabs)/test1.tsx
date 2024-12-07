@@ -1,7 +1,7 @@
-import { useNavigation } from 'expo-router';
+import { useNavigation, useRouter } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const TabTwoScreen = () => {
+const Test1Screen = () => {
   const navigation = useNavigation();
 
   return (
@@ -15,4 +15,4 @@ const TabTwoScreen = () => {
   );
 };
 
-export default TabTwoScreen;
+export default Test1Screen;
